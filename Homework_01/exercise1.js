@@ -47,7 +47,7 @@ let filterArr = async function(){
 
  
 console.log('Start');
-console.log([4,5,2,1,7,8,3,9,5,6,4]);
+//console.log([4,5,2,1,7,8,3,9,5,6,4]);
 filterArr();
 //[4,5,2,1,7,8,3,9,5,6,4].removeNum(4);
 console.log('Finish');

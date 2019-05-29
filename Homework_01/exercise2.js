@@ -1,6 +1,5 @@
 
 $(document).ready(function(){
-
     function getFetch(){
         let dataFetch = fetch('https://randomuser.me/api/');
         return dataFetch;
