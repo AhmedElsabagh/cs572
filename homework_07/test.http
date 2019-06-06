@@ -1,0 +1,15 @@
+GET http://localhost:3300/lectures
+###
+GET http://localhost:3300/lectures/5cf8972cee25822204676a4f
+###
+POST http://localhost:3300/lectures
+content-type: application/json
+
+{
+    "course" : "CS888",
+    "lecture" : "ASD"
+}
+###
+Delete http://localhost:3300/lectures/5cf8972cee25822204676a4f
+###
+GET http://localhost:3300/search/ASD
