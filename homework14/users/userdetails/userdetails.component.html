@@ -1,3 +1,12 @@
 <p>
-  userdetails works!
+  User data: {{id}}
 </p>
+<div><img [src] = "userData.picture.medium"></div>
+<div>{{userData.name.title}} {{userData.name.first}} {{userData.name.last}}</div>
+<div>phone: {{userData.phone}}</div>
+<div>cell: {{userData.cell}}</div>
+<div>username: {{userData.login.username}}</div>
+<div>gender: {{userData.gender}}</div>
+<div>street: {{userData.location.street}}</div>
+<div>city: {{userData.location.city}}</div>
+<div>state: {{userData.location.state}}</div>

@@ -1,14 +1,18 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RandomUserService {
 
-  public myHeaders: any
+  public ad
+  //public myHeaders: any
+
   constructor(public http: HttpClient) { }
+  emitter = new EventEmitter<Observable<object>>();
 
   getOnlineData() {
     // this.myHeaders = new Headers();
@@ -19,10 +23,28 @@ export class RandomUserService {
 
   getCachedData() {
     const obs$ = Observable.create(async (observer) => {
-      let ad = localStorage.getItem('allUserData');
-      observer.next(JSON.parse(ad).results);
+      this.ad = JSON.parse(localStorage.getItem('allUserData')).results;
+      observer.next(this.ad);
       observer.complete();
-    })
+    }).pipe(shareReplay(1))
     return obs$;
+  }  
+
+  checkIdExist(userId:string) {
+    let isExist = false;
+    this.getCachedData().subscribe((data) => {
+      let result = data.find( s => s.login.uuid == userId);
+      if(result){
+        isExist = true;
+      }
+      else{
+        isExist = false;
+      }
+    });
+    return isExist
+  }
+
+  emitValue(value: Observable<object>){
+    this.emitter.emit(value);
   }
 }
